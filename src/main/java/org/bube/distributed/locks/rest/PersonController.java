@@ -30,7 +30,6 @@ public class PersonController {
     boolean lockAcquired = lock.tryLock(1, TimeUnit.SECONDS);
     if (lockAcquired) {
       try {
-        TimeUnit.SECONDS.sleep(10);
         return personService.editPerson(id, name, age);
       } finally {
         lock.unlock();

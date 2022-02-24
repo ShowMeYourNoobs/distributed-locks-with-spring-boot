@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @AllArgsConstructor
@@ -15,12 +16,13 @@ public class PersonService {
 
   private PersonRepository personRepository;
 
-  public Person editPerson(Long id, String name, Integer age) {
+  public Person editPerson(Long id, String name, Integer age) throws InterruptedException {
     Optional<Person> personOptional = personRepository.findById(id);
     if (personOptional.isEmpty()) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Person with id: %s was not found", id));
     }
 
+    TimeUnit.SECONDS.sleep(10); // Simulate heavy operation
     Person person = personOptional.get();
     if (name != null && !name.isEmpty()) {
       person.setName(name);
