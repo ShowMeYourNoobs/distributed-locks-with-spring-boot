@@ -26,7 +26,7 @@ public class PersonController {
                            @RequestParam(required = false) String name,
                            @RequestParam(required = false) Integer age) throws InterruptedException {
 
-    Lock lock = lockRegistry.obtain("PersonLock");
+    Lock lock = lockRegistry.obtain("person");
     boolean lockAcquired = lock.tryLock(1, TimeUnit.SECONDS);
     if (lockAcquired) {
       try {

@@ -2,10 +2,25 @@
 
 ### Running locally
 
+#### PostgresDb
+
 PostgresDb on port 5432 is needed for this example, you can run it with the following docker command:
 ```
-sudo docker run -e POSTGRES_PASSWORD=1234 -p 5432:5432 -d postgres:10-alpine
+docker run -e POSTGRES_PASSWORD=1234 -p 5432:5432 -d postgres:10-alpine
 ```
+
+#### Redis
+
+```
+docker run -d \
+  -h redis \
+  -e REDIS_PASSWORD=1234 \
+  -p 6379:6379 \
+  --name redis \
+  --restart always \
+  redis:5-alpine /bin/sh -c 'redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}'
+```
+
 ### Further reading
 Here is more info about the available LockRegistry implementations by Spring Integration:
 - [JdbcLockRegistry](https://docs.spring.io/spring-integration/reference/html/jdbc.html#jdbc-lock-registry)
