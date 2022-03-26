@@ -22,7 +22,7 @@ public class PersonService {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Person with id: %s was not found", id));
     }
 
-    TimeUnit.SECONDS.sleep(10); // Simulate heavy operation
+    TimeUnit.SECONDS.sleep(20); // Simulate heavy operation
     Person person = personOptional.get();
     if (name != null && !name.isEmpty()) {
       person.setName(name);
@@ -30,6 +30,7 @@ public class PersonService {
     if (age != null && age != 0) {
       person.setAge(age);
     }
+
     return personRepository.save(person);
   }
 }
