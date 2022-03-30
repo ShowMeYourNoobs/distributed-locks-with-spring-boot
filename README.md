@@ -1,21 +1,5 @@
 # Distributed locks with SpringBoot
 
-### Running locally
-
-Example db table called "person" with a couple of pre-inserted rows:
-
-```
-CREATE TABLE person (
-	id serial PRIMARY KEY,
-	name VARCHAR ( 50 ),
-	age INT
-);
-INSERT INTO person (name, age) 
-VALUES('Jim',30);
-INSERT INTO person (name, age) 
-VALUES('Jess',26);
-```
-
 #### PostgresDb
 
 PostgresDb on port 5432 is needed for this example, you can run it with the following docker command:
@@ -45,6 +29,22 @@ docker run -d \
   --name redis \
   --restart always \
   redis:5-alpine /bin/sh -c 'redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}'
+```
+
+### Example shared resource
+
+Example db table called "person" with a couple of pre-inserted rows (shared resources):
+
+```
+CREATE TABLE person (
+	id serial PRIMARY KEY,
+	name VARCHAR ( 50 ),
+	age INT
+);
+INSERT INTO person (name, age) 
+VALUES('Jim',30);
+INSERT INTO person (name, age) 
+VALUES('Jess',26);
 ```
 
 ### Further reading
