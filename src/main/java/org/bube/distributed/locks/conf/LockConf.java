@@ -16,7 +16,9 @@ public class LockConf {
 
   @Bean
   public DefaultLockRepository defaultLockRepository(DataSource dataSource) {
-    return new DefaultLockRepository(dataSource);
+    DefaultLockRepository defaultLockRepository = new DefaultLockRepository(dataSource);
+//    defaultLockRepository.setTimeToLive(20000);
+    return defaultLockRepository;
   }
 
   @Bean
